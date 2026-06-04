@@ -1,0 +1,14 @@
+[project]
+name = "multipoint-messaging-with-naming-service-estevao-arthur-gabrielle-rafael"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "certifi==2026.4.22",
+    "charset-normalizer==3.4.7",
+    "duckdb==1.5.2",
+    "idna==3.13",
+    "requests==2.33.1",
+    "urllib3==2.6.3",
+]
