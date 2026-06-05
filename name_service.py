@@ -35,9 +35,28 @@ class ServicoDeNomes:
             elif operacao == "register":
                 nome = mensagem["name"]
                 tipo = mensagem["type"]
-                self.registros[nome]["type"] = tipo
-                resposta = {"status": "ok"}
-                print("Registrou tipo:", nome, tipo)
+                if nome in self.registros:
+                    self.registros[nome]["type"] = tipo
+                    resposta = {"status": "ok"}
+                    print("Registrou tipo:", nome, tipo)
+                else:
+                    resposta = {"status": "erro", "message": "nome nao registrado"}
+
+            elif operacao == "lookup":
+                nome = mensagem["name"]
+                if nome in self.registros:
+                    resposta = {"status": "ok", "address": self.registros[nome]["address"]}
+                else:
+                    resposta = {"status": "erro", "message": "nome nao encontrado"}
+
+            elif operacao == "unbind":
+                nome = mensagem["name"]
+                if nome in self.registros:
+                    del self.registros[nome]
+                    resposta = {"status": "ok"}
+                    print("Removeu:", nome)
+                else:
+                    resposta = {"status": "erro", "message": "nome nao encontrado"}
 
             elif operacao == "discover":
                 tipo_procurado = mensagem["type"]
